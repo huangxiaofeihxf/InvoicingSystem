@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxf.dao.UserMapper">
+    <select id="login" parameterType="Users" resultType="Users">
+       SELECT id,userName,password,realName from users
+       <where>
+           userName=#{userName} And password=#{password}
+       </where>
+    </select>
+    <select id="option" resultType="Product">
+        SELECT id,productName,quantity from product
+    </select>
+
+    <insert id="addSale" parameterType="Sale">
+        INSERT INTO sale(price,quantity,totalPrice,saleDate,userId,productId)
+        values(#{price},#{quantity},#{totalPrice},#{saleDate},#{userId},#{productId})
+    </insert>
+
+    <update id="updateProductNum">
+        UPDATE product set quantity=quantity-#{0} WHERE id=#{1}
+    </update>
+
+    <select id="findAllSaleCount" parameterType="int" resultType="int">
+         SELECT count(*) from sale
+    </select>
+
+    <select id="findAllSaleDetailByPage" resultType="SaleDetail">
+        SELECT s.id,productName,s.price,s.quantity,totalPrice,saleDate,realName FROM sale s,users,product GROUP BY productName ORDER BY saleDate DESC
+            limit #{0},#{1}
+    </select>
+</mapper>
