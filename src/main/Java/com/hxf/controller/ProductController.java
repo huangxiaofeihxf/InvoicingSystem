@@ -65,7 +65,7 @@ public class ProductController {
         pageInfo.setPageSize(3);
         List<Sale> list = userService.findAllSaleDetailByPage(pageInfo.getPageNum(), pageInfo.getPageSize());
         System.out.println(list);
-        pageInfo.setList(list);
+        pageInfo.setList(list);//家哈哈哈
         return pageInfo;
     }
 }
