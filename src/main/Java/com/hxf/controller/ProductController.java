@@ -64,7 +64,7 @@ public class ProductController {
         System.out.println(pageInfo.getTotal());
         pageInfo.setPageSize(3);
         List<Sale> list = userService.findAllSaleDetailByPage(pageInfo.getPageNum(), pageInfo.getPageSize());
-        System.out.println(list);
+        System.out.println(list);//家哈哈哈哈哈哈哈
         pageInfo.setList(list);//家哈哈哈哈哈哈哈
         return pageInfo;
     }
